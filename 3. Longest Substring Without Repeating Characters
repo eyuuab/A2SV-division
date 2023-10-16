@@ -1,0 +1,14 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        l, r = 0, 0
+        maxstr = 0
+        mp = defaultdict(int)
+        while r < len(s):
+            if s[r] not in mp:
+                mp[s[r]] += 1
+                r += 1
+                maxstr = max(maxstr, r - l)
+            else:
+                del mp[s[l]]
+                l += 1
+        return maxstr
