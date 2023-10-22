@@ -1,0 +1,25 @@
+class Solution:
+    def pancakeSort(self, arr):
+        flips = []
+        
+        def flip(arr, k):
+            i, j = 0, k
+            while i < j:
+                arr[i], arr[j] = arr[j], arr[i]
+                i += 1
+                j -= 1
+
+        for target in range(len(arr), 0, -1):
+            index = arr.index(target)
+
+            if index == target - 1:
+                continue
+     
+            if index != 0:
+                flips.append(index + 1)
+                flip(arr, index)
+
+            flips.append(target)
+            flip(arr, target - 1)
+
+        return flips
