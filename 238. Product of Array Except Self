@@ -1,0 +1,24 @@
+from typing import List
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        pef = [1] * n
+        post = [1] * n
+        result = [0] * n 
+
+        pro = 1
+        for i in range(n):
+            pef[i] = pro
+            pro *= nums[i]
+
+        pro = 1
+        for i in range(n -1, -1, -1):
+            post[i] = pro
+            pro *= nums[i]
+
+       
+        for i in range(n):
+            result[i] = pef[i] * post[i]
+
+        return result
